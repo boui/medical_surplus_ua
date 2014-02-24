@@ -2,17 +2,6 @@
 
 ## Intro
 
-This template application shows how to organize your application with
-[Playframework 2](http://www.playframework.com), [WebJars](http://www.webjars.org),
-[RequireJS](http://www.requirejs.org) and [AngularJS](http://www.angularjs.org).
-
-It shows an alternative way of organizing modules than the official
-[Angular-Play-Seed](https://github.com/typesafehub/angular-seed-play).
-
-For a full explanation, read the following blog post:
-http://www.mariussoutier.com/blog/2013/08/25/requirejs-optimization-play-webjars/
-
-
 ## Code Organization
 
 The JavaScript modules are organized as follows:
@@ -35,12 +24,15 @@ The JavaScript modules are organized as follows:
 
 ### Dev Mode
 
+* create file 'public/generated/fizrastvor'
 * Load dependencies via `play update`
 * Run via `play ~run`
 * Go to localhost:9000
 
 ### Prod Mode
 
+* set output.dir configuration parameter
+* create file '<output-dir>/generated/fizrastvor'
 * Produce executable via `play stage`
 * Run `target/start -Dhttp.port=9000`
 
