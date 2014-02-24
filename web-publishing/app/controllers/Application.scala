@@ -12,6 +12,25 @@ object Application extends Controller with Security {
     Ok(views.html.index())
   }
 
+  def uploadForm = Action {
+    Ok(views.html.upload())
+  }
+
+  def upload = Action(parse.multipartFormData) { request =>
+  request.body.file("picture").map { picture =>
+    import java.io.File
+    val filename = picture.filename 
+    val contentType = picture.contentType
+    picture.ref.moveTo(new File("/tmp/picture"))
+    Ok("File uploaded")
+  }.getOrElse {
+    Redirect(routes.Application.index).flashing(
+      "error" -> "Missing file"
+    )
+  }
+  }
+
+
   /**
    * Returns the JavaScript router that the client can use for "type-safe" routes.
    * @param varName The name of the global variable, defaults to `jsRoutes`
