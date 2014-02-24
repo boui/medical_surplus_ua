@@ -1,4 +1,10 @@
 @import helper._
+<html>
+<head>
+ <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<p>
 @form(action = routes.Application.upload, 'enctype -> "multipart/form-data") {
     
     <input type="file" name="picture">
@@ -10,3 +16,6 @@
     <p>  <a href="/assets/generated/fizrastvor/last.html"> last </a> </p>
     
 }
+</p>
+</body>
+</html>

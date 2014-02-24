@@ -25,7 +25,7 @@ object Application extends Controller with Security {
       val contentType = picture.contentType
       // TODO: move to model
       val reader = new InputStreamReader(new FileInputStream(picture.ref.file), "cp1251")
-      val csvReader = new CSVReader(reader, ';')
+      val csvReader = new CSVReader(reader, ';','"')
       import scala.collection.JavaConversions._
       val lines = csvReader.readAll().drop(8).dropRight(5)
       HtmlGeneration.rest(lines.iterator(),"fizrastvor")
