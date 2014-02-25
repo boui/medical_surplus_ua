@@ -4,6 +4,6 @@
 # before the deploy step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
 
-CMD=${OPENSHIFT_DATA_DIR}sbt/sbt/sbt -Dsbt.global.base=${OPENSHIFT_DATA_DIR}sbt/.sbt -Dsbt.boot.directory=${OPENSHIFT_DATA_DIR}sbt/.sbt/boot clean compile stage
+CMD="${OPENSHIFT_DATA_DIR}sbt/sbt/sbt -Dsbt.global.base=${OPENSHIFT_DATA_DIR}sbt/.sbt -Dsbt.boot.directory=${OPENSHIFT_DATA_DIR}sbt/.sbt/boot clean compile stage"
 echo $CMD > ${OPENSHIFT_DATA_DIR}sbt/cmd.log
 $CMD
