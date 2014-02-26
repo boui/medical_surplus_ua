@@ -5,6 +5,8 @@
 # could be python, php, ruby, etc.
 
 cd $OPENSHIFT_REPO_DIR
-CMD="${OPENSHIFT_DATA_DIR}sbt/sbt/sbt -Dsbt.global.base=${OPENSHIFT_DATA_DIR}sbt/.sbt -Dsbt.boot.directory=${OPENSHIFT_DATA_DIR}sbt/.sbt/boot clean compile stage"
+CMD="${OPENSHIFT_DATA_DIR}sbt/sbt clean compile stage"
 pwd >> ${OPENSHIFT_DATA_DIR}sbt/cmd.log
 $CMD &> ${OPENSHIFT_DATA_DIR}sbt/build.log
+
+#Dsbt.global.base=${OPENSHIFT_DATA_DIR}sbt/.sbt -Dsbt.boot.directory=${OPENSHIFT_DATA_DIR}sbt/.sbt/boot
