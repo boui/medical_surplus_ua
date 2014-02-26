@@ -3,6 +3,8 @@ package controllers
 import play.api._
 import play.api.mvc._
 import play.api.libs.json._
+import au.com.bytecode.opencsv._
+import models._
 
 /** Application controller, handles authentication */
 object Application extends Controller with Security {
@@ -17,17 +19,23 @@ object Application extends Controller with Security {
   }
 
   def upload = Action(parse.multipartFormData) { request =>
-  request.body.file("picture").map { picture =>
-    import java.io.File
-    val filename = picture.filename 
-    val contentType = picture.contentType
-    picture.ref.moveTo(new File("/tmp/picture"))
-    Ok("File uploaded")
-  }.getOrElse {
-    Redirect(routes.Application.index).flashing(
-      "error" -> "Missing file"
-    )
-  }
+    request.body.file("picture").map { picture =>
+      import java.io._
+      val filename = picture.filename 
+      val contentType = picture.contentType
+      // TODO: move to model
+      val reader = new InputStreamReader(new FileInputStream(picture.ref.file), "cp1251")
+      val csvReader = new CSVReader(reader, ';','"')
+      import scala.collection.JavaConversions._
+      val lines = csvReader.readAll().drop(8).dropRight(5)
+      HtmlGeneration.rest(lines.iterator(),"fizrastvor")
+      //  ID of user, who uploaded file will be here"
+      Ok(views.html.upload())
+    }.getOrElse {
+      Redirect(routes.Application.index).flashing(
+        "error" -> "Missing file"
+      )
+    }
   }
 
 

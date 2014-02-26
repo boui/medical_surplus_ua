@@ -4,7 +4,7 @@ import play.Project._
 
 object ApplicationBuild extends Build {
 
-  val appName         = "play-angular-require-seed"
+  val appName         = "medical-surplus-ua-publishing"
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
@@ -14,7 +14,10 @@ object ApplicationBuild extends Build {
     "org.webjars" % "angularjs" % "1.0.7" exclude("org.webjars", "jquery"),
 
     "org.webjars" % "requirejs" % "2.1.1",
-    "org.webjars" %% "webjars-play" % "2.1.0-3"
+    "org.webjars" %% "webjars-play" % "2.1.0-3",
+
+    "net.sf.opencsv" % "opencsv" % "2.0"
+
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
