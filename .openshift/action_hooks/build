@@ -12,3 +12,5 @@ cd $OPENSHIFT_REPO_DIR
 CMD="$SBT_PATH/bin/sbt -sbt-dir $SBT_DIR -ivy $IVY_DIR clean compile stage"
 
 $CMD &> ${OPENSHIFT_DATA_DIR}sbt/build.log
+
+#$OPENSHIFT_DATA_DIR/sbt/bin/sbt -sbt-dir $OPENSHIFT_DATA_DIR/.sbt -ivy $OPENSHIFT_DATA_DIR/.ivy clean compile stage

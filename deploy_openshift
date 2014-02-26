@@ -1,0 +1,13 @@
+#!/bin/bash
+CARTRIGE=530bcff04382ecde900000a5
+
+#sbt clean compile stage
+#scp -r target ${CARTRIGE}@surplus-medmaidan.rhcloud.com:/var/lib/openshift/${CARTRIGE}/app-root/runtime/repo
+
+CMD='nohup bash -c ${OPENSHIFT_REPO_DIR}target/start -Dhttp.port=${OPENSHIFT_DIY_PORT} -Dhttp.address=${OPENSHIFT_DIY_IP} -Dconfig.resource=openshift.conf > ${OPENSHIFT_REPO_DIR}start.log &'
+
+echo $CMD
+ssh 'kill `cat ${OPENSHIFT_REPO_DIR}RUNNIN_PID`'
+ssh 'rm ${OPENSHIFT_REPO_DIR}RUNNIN_PID'
+ssh ${CARTRIGE}@surplus-medmaidan.rhcloud.com $CMD
+
