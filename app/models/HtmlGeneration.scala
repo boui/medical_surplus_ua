@@ -11,7 +11,8 @@ object HtmlGeneration {
      {
        // TODO: set date.
        val outputFname = Settings.outputDir+"/"+ownerId+"/last.html"
-       val output = new FileWriter(outputFname, false)
+       val file = new File(outputFname)
+       val output = new OutputStreamWriter(new FileOutputStream(file), "UTF8")
        // TODO: use template.
        output.write(
           <html>
@@ -31,8 +32,8 @@ object HtmlGeneration {
            </body>
           </html>.toString
        )
+       output.flush()
        output.close()
-       val f = new File(outputFname)
      }
 
      def mkTableLine(line: Array[String]): NodeSeq =
