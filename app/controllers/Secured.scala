@@ -5,7 +5,9 @@ import play.api.mvc._
 import play.api.libs.json._
 
 /** Manages the security architecture */
-trait Security {
+trait Secured {
+  self : Controller =>
+
 
   // TODO Implement your security logic here
 

@@ -7,7 +7,7 @@ import play.api.libs.json._
 //import models.User
 
 /** Example controller; see conf/routes for the the mapping to routes */
-object Users extends Controller with Security {
+object Users extends Controller with Secured {
 
   /** Retrieves the user for the given id as JSON */
   def user(id: Long) = Action(parse.empty) { request =>

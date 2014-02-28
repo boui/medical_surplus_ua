@@ -7,7 +7,7 @@ import au.com.bytecode.opencsv._
 import models._
 
 /** Application controller, handles authentication */
-object Application extends Controller with Security {
+object Application extends Controller with Secured {
 
   /** Serves the index page, see views/index.scala.html */
   def index = Action {
@@ -46,22 +46,22 @@ object Application extends Controller with Security {
   def jsRoutes(varName: String = "jsRoutes") = Action { implicit request =>
     Ok(
       Routes.javascriptRouter(varName)(
-        routes.javascript.Application.login,
-        routes.javascript.Application.logout,
-        routes.javascript.Users.user,
-        routes.javascript.Users.createUser,
-        routes.javascript.Users.updateUser,
-        routes.javascript.Users.deleteUser
+        routes.javascript.Application.auth
         // TODO Add your routes here
       )
     ).as(JAVASCRIPT)
   }
 
+  case class AuthInfo(login:String, password:String);
+
+  def login() = Action( Ok(views.html.login()) )
   /**
    * Log-in a user. Pass the credentials as JSON body.
    * @return The token needed for subsequent requests
    */
-  def login() = Action(parse.json) { implicit request =>
+  def auth() = Action(parse.json) { implicit request =>
+    val (login, password) = request.body.as[AuthInfo]
+
     // TODO Check credentials, log user in, return correct token
     val token = java.util.UUID.randomUUID().toString
     Ok(Json.obj("token" -> token))

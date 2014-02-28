@@ -16,7 +16,8 @@ POST    /upload                 controllers.Application.upload()
 # ~~~~
 
 # Authentication
-POST    /login                  controllers.Application.login()
+POST    /auth                  controllers.Application.auth()
+GET     /login                  controllers.Application.login()
 POST    /logout                 controllers.Application.logout()
 
 # Users
