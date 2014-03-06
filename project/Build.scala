@@ -16,7 +16,8 @@ object ApplicationBuild extends Build {
     "org.webjars" % "requirejs" % "2.1.1",
     "org.webjars" %% "webjars-play" % "2.1.0-3",
 
-    "net.sf.opencsv" % "opencsv" % "2.0"
+    "net.sf.opencsv" % "opencsv" % "2.0",
+    "commons-codec" % "commons-codec" % "1.8"
 
   )
 

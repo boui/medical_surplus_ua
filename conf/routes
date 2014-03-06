@@ -5,10 +5,6 @@
 # Home page
 GET     /                       controllers.Application.index
 
-# JavaScript routes object
-GET     /jsroutes.js            controllers.Application.jsRoutes()
-
-
 GET     /upload                 controllers.Application.uploadForm()
 POST    /upload                 controllers.Application.upload()
 
